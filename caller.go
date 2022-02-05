@@ -10,10 +10,7 @@ import (
 
 func main() {
 	httpGet("https://jsonplaceholder.typicode.com/posts")
-	requestBodyBuffer, err := postBodyEncoding("")
-	if err != nil {
-		log.Fatalln(err)
-	}
+	requestBodyBuffer := postBodyEncoding("")
 	httpPost("https://postman-echo.com/post", "application/json", requestBodyBuffer)
 }
 
@@ -45,11 +42,11 @@ func httpPost(url string, contentType string, requestBody *bytes.Buffer) {
 	log.Printf(responseBody)
 }
 
-func postBodyEncoding(postBody string) (*bytes.Buffer, error) {
+func postBodyEncoding(postBody string) *bytes.Buffer {
 	parsePostBody, _ := json.Marshal(map[string]string{
 		"Project": "Cambrian",
 		"Desire":  "Dashboards for API based on Go and some front end tech - yet to be decided",
 	})
 	responseBody := bytes.NewBuffer(parsePostBody)
-	return responseBody, nil
+	return responseBody
 }
