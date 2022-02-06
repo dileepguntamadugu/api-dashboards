@@ -4,7 +4,7 @@
 rm -f testoutcomes.csv
 
 #Script to run the newman tests
-node script.js
+node newman_runner.js
 
 #Creating the html document to be served from node server
 node createhtmldocument.js
@@ -13,4 +13,4 @@ node createhtmldocument.js
 kill -9 $(lsof -ti:8000)
 
 #Serving the report
-node api-dashboard.js
+node server.js
